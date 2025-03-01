@@ -5,6 +5,12 @@ from materials.validators import NoLinkValidator
 
 
 class CourseSerializer(ModelSerializer):
+    is_subscribed = SerializerMethodField()
+
+    def get_is_subscribed(self, obj):
+        request = self.context.get('request')
+        if request:
+            return obj.subscribes.filter(user=request.user).exists()
 
     class Meta:
         model = Course
