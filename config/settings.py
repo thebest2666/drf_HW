@@ -24,6 +24,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'django_filters',
+    'drf_yasg',
 
     'users',
     'materials',
@@ -118,3 +119,5 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=24 * 365),  # Токен действителен год
     'REFRESH_TOKEN_LIFETIME': timedelta(days=3650),  # Refresh токен действителен 10 лет
 }
+
+STRIPE_API_KEY = os.getenv('STRIPE_API_KEY')

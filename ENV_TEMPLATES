@@ -7,3 +7,4 @@ PASSWORD=you_password
 HOST=you_host
 PORT=you_port
 
+STRIPE_API_KEY=YOU_STRIPE_API_KEY
