@@ -9,6 +9,7 @@ from rest_framework.viewsets import ModelViewSet
 from materials.models import Course, Lesson, Subscribe
 from materials.paginators import MaterialsPagination
 from materials.serializers import CourseSerializer, LessonSerializer, CourseDetailSerializer, SubscribeSerializer
+from materials.tasks import send_mail_after_course_update
 from users.permissions import IsModerator, IsAuthor
 
 
@@ -27,6 +28,7 @@ class CourseViewSet(ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
+        send_mail_after_course_update.delay()
 
     def get_permissions(self):
         if self.action in 'update':
